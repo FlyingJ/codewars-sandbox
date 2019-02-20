@@ -1,0 +1,44 @@
+import math
+
+def sol_equa(n):
+    x = 0
+    solutions = []
+    while x <= math.ceil(n / 2.0):
+        y = 0
+        # both terms of (x + 2 * y) * (x - 2 * y) must be > 0
+        # since n > 0
+        # this limits valid values for y
+        while x > 2 * y:
+            if (x + 2 * y) * (x - 2 * y) == n:
+                solutions.append([x, y])
+            y += 1
+        x += 1
+    return sorted(solutions, reverse = True)
+
+if __name__ == '__main__':
+    print test.assert_equals(sol_equa(12), [[4, 1]])
+    print test.assert_equals(sol_equa(13), [[7, 3]]) 
+    print test.assert_equals(sol_equa(16), [[4, 0]])
+    print test.assert_equals(sol_equa(17), [[9, 4]])
+    print test.assert_equals(sol_equa(90005), [[45003, 22501], [9003, 4499], [981, 467], [309, 37]])
+    print test.assert_equals(sol_equa(90002), [])
+
+'''
+http://mathworld.wolfram.com/PellEquation.html
+
+The more complicated Pell-like equation
+
+x^2-Dy^2=c
+
+with |c|<sqrt(D) has solution iff c is one of the values (-1)^kQ_k for k=1, 2, ..., r computed in the process of finding the convergents to sqrt(D) (where, as above, a_(r+1)=2a_0 is the term at which the continued fraction becomes periodic). If |c|>sqrt(D), the procedure is significantly more complicated (Beiler 1966, p. 265; Dickson 2005, pp. 387-388) and is discussed by Gérardin (1910) and Chrystal (1961).
+
+REFERENCES:
+Beiler, A. H. "The Pellian." Ch. 22 in Recreations in the Theory of Numbers: The Queen of Mathematics Entertains. New York: Dover, pp. 248-268, 1966.
+[...]
+Chrystal, G. Textbook of Algebra, 2nd ed., Vol. 2. New York: Chelsea, pp. 478-486, 1961.
+[...]
+Dickson, L. E. "Pell Equation: ax^2+bx+c Made Square." Ch. 12 in History of the Theory of Numbers, Vol. 2: Diophantine Analysis. New York: Dover, pp. 341-400, 2005.
+[...]
+Gérardin, A. "Formules de récurrence." Sphinx-Oedipe 5, 17-29, 1910.
+[...]
+'''
