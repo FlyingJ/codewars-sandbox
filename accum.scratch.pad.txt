@@ -1,0 +1,41 @@
+Test.expect(xo('xo'))
+Test.expect(xo('xo0'))
+Test.expect(not xo('xxxoo'))
+Test.expect(not xo('xxxxxxxxAooooxoooxoxboxxoooxxooxoxxxxooxxxxxxoo'))
+Test.expect(not xo('xxxooxoooooooxxxxooooxxxxoxxooxxoxxoxoxxxoxxo'))
+Test.expect(not xo('xxxxbxxxxoooxxxoxooxxxoxxoooAoxxoxxooxoxxxoox'))
+Test.expect(not xo('ExxoxoxobooxxxxoxoooxxxxoooxxxAooxxxxxooooxooxxxooxxofoooxxCxodo'))
+Test.expect(not xo('xACbfExxxxdGxxxkhJxx'))
+Test.expect(xo('oooxxkxohoxoxrmxQxoGxxCooooxJSxoobfLoxpxxxENoxoAxod'))
+Test.expect(xo('dxohpvoooxxoxoUQxooWxxxokoxoxSorbxJxNoCxxoAxxoxoxxooxxEoooLtmfG'))
+Test.expect(not xo('xxxxxAxxxxdxxooxoxooooooooooxoxxxxoxboExxxfoxxxxooxoxxoooxC'))
+Test.expect(xo('oxokfbxxxoooxxoAxLxoNxoxodCEooxoGoJxhQxpmxoox'))
+Test.expect(not xo('xxkxfxxxmxSrhxxxNxxdxLxxGtCEboooQAooxoxpoxJo'))
+
+
+import string
+
+def xo(s):
+    # case insensitive
+    s.lower()
+    if s.count('x') == s.count('o'):
+        return True
+    else:
+        return False
+
+Test.describe("accum")
+Test.it("Basic tests")
+Test.assert_equals(accum("ZpglnRxqenU"), "Z-Pp-Ggg-Llll-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu")
+Test.assert_equals(accum("NyffsGeyylB"), "N-Yy-Fff-Ffff-Sssss-Gggggg-Eeeeeee-Yyyyyyyy-Yyyyyyyyy-Llllllllll-Bbbbbbbbbbb")
+Test.assert_equals(accum("MjtkuBovqrU"), "M-Jj-Ttt-Kkkk-Uuuuu-Bbbbbb-Ooooooo-Vvvvvvvv-Qqqqqqqqq-Rrrrrrrrrr-Uuuuuuuuuuu")
+Test.assert_equals(accum("EvidjUnokmM"), "E-Vv-Iii-Dddd-Jjjjj-Uuuuuu-Nnnnnnn-Oooooooo-Kkkkkkkkk-Mmmmmmmmmm-Mmmmmmmmmmm")
+Test.assert_equals(accum("HbideVbxncC"), "H-Bb-Iii-Dddd-Eeeee-Vvvvvv-Bbbbbbb-Xxxxxxxx-Nnnnnnnnn-Cccccccccc-Ccccccccccc")
+
+import string
+
+def accum(s):
+    s = s.lower()
+    tokenList = []
+    for i in range(len(s)):
+        tokenList.append((s[i] * i).capitalize())
+    return join(tokenList, '-')
