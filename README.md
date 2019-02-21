@@ -1,1 +1,2 @@
-codewars sandbox
+# Code Sandbox for CodeWars Exercises
+---
