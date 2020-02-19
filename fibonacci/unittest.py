@@ -10,7 +10,7 @@ import unittest
 
 import fibonacci as fb
 
-class TestStringMethods(unittest.TestCase):
+class TestFibonacciMethods(unittest.TestCase):
     
     def test_Fibonacci_initialize(self):
         fib = fb.Fibonacci()
@@ -27,27 +27,23 @@ class TestStringMethods(unittest.TestCase):
                   987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368,
                   75025, 121393, 196418, 317811, 514229, 832040]
         self.assertEqual(str(fib), str(answer))
-            
-#    def test_initialize_cache(self):
-#        positive_test_cases = [[0, 1], [0, 1, 1], ['foo', 'bar', 'baz']]
-#        for test_case in positive_test_cases:
-#            self.assertEqual(fb.initialize_cache(test_case), test_case)
-#        
-#        negative_test_cases = [0, (0, 1), {'zero': 0}]
-#        for test_case in negative_test_cases:
-#            with self.assertRaises(TypeError):
-#                fb.initialize_cache(test_case)
 
-#    def test_isupper(self):
-#        self.assertTrue('FOO'.isupper())
-#        self.assertFalse('Foo'.isupper())
-#
-#    def test_split(self):
-#        s = 'hello world'
-#        self.assertEqual(s.split(), ['hello', 'world'])
-#        # check that s.split fails when the separator is not a string
-#        with self.assertRaises(TypeError):
-#            s.split(2)
+    def test_FibonacciProduct_getitem(self):
+        fib_prod = fb.FibonacciProduct()
+        self.assertEqual(fib_prod(0), 0)
+        self.assertEqual(fib_prod(1), 1)
+        self.assertEqual(fib_prod(2), 2)
+
+    def test_FibonacciProduct_get_inf(self):
+        fib_prod = fb.FibonacciProduct()
+        self.assertEqual(fib_prod.get_inf(5), [3, False])
+            
+    def test_get_fib_prod_terms(self):
+        fib = fb.Fibonacci()
+        fib_prod = fb.FibonacciProduct()
+        self.assertEqual(fb.get_fib_prod_terms(fib, fib_prod, 4895), [55, 89, True])
+        self.assertEqual(fb.get_fib_prod_terms(fib, fib_prod, 5895), [89, 144, False])
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)

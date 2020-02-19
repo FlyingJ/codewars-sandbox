@@ -59,6 +59,9 @@ class Fibonacci():
     def __repr__(self):
         return str(self.cache)
 
+    def get_term(self, term):
+        return self(term)
+
 class FibonacciProduct():
     '''
     a class for sequences of products of consecutive Fibonacci sequence
