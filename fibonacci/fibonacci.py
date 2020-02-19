@@ -107,25 +107,3 @@ def get_fib_prod_terms(fibonacci, fibonacci_product, target_product):
     '''
     term, equality = fibonacci_product.get_inf(target_product)
     return [fibonacci(term), fibonacci(term+1), equality]
-
-if __name__ == '__main__':
-
-    FIB = Fibonacci()
-    print(FIB(5))
-    print(FIB(0))
-    print(FIB(1))
-    print(FIB(10))
-    print(FIB)
-    print(FIB(30))
-    print(FIB)
-
-    FIB_PROD = FibonacciProduct()
-    print(FIB_PROD(0))
-    print(FIB_PROD(1))
-    print(FIB_PROD(2))
-    print(FIB_PROD.get_inf(5))
-
-#    test.assert_equals(productFib(4895), [55, 89, True])
-#    test.assert_equals(productFib(5895), [89, 144, False])
-    print(get_fib_prod_terms(FIB, FIB_PROD, 4895) == [55, 89, True])
-    print(get_fib_prod_terms(FIB, FIB_PROD, 5895) == [89, 144, False])
