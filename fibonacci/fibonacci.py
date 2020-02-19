@@ -23,8 +23,16 @@ class Cache():
     def __repr__(self):
         return str(self.cached_items)
 
+    def flush(self):
+        '''
+        flush currently cached items
+        initializing to empty list
+        '''
+        self.cached_items = []
+
     def update(self, value):
-        ''' update cache by simple append of provided value
+        '''
+        update cache by simple append of provided value
         '''
         self.cached_items.append(value)
 
@@ -63,12 +71,12 @@ class FibonacciProduct():
         - Fibonacci sequence object
         '''
         self.cache = Cache([])
-        self.FIB = Fibonacci()
+        self.fibonacci_sequence = Fibonacci()
 
     def __call__(self, term):
-        return self.FIB(term) * self.FIB(term+1)
+        return self.fibonacci_sequence(term) * self.fibonacci_sequence(term+1)
 
-    def inf_scan(self, target_product):
+    def get_inf(self, target_product):
         '''
         scan Fibonacci product sequence for smallest term equal to, or
         greater than, product
@@ -77,16 +85,25 @@ class FibonacciProduct():
         '''
         term = 0
         while True:
-            FIB_PRODUCT = self(term)
-            if FIB_PRODUCT >= target_product:
-                return [term, FIB_PRODUCT == target_product]
+            fibonacci_product = self(term)
+            if fibonacci_product >= target_product:
+                return [term, fibonacci_product == target_product]
             term += 1
 
-def productFib(target_product):
-    FIB = Fibonacci()
-    FIB_PROD = FibonacciProduct()
-    term, equality = FIB_PROD.inf_scan(target_product)
-    return [FIB(term), FIB(term+1), equality]
+def get_fib_prod_terms(fibonacci, fibonacci_product, target_product):
+    '''
+    given:
+        - a sequence of type Fibonacci
+        - a sequence of type FibonacciProduct
+        - a target product
+    return
+        - the adjacent elements of the Fibonacci sequence whose product has the
+        smallest value equal to, or greater than, the target product
+        - a boolean value indicating whether the product of the terms is equal
+        to the target product
+    '''
+    term, equality = fibonacci_product.get_inf(target_product)
+    return [fibonacci(term), fibonacci(term+1), equality]
 
 if __name__ == '__main__':
 
@@ -103,9 +120,9 @@ if __name__ == '__main__':
     print(FIB_PROD(0))
     print(FIB_PROD(1))
     print(FIB_PROD(2))
-    print(FIB_PROD.inf_scan(5))
+    print(FIB_PROD.get_inf(5))
 
 #    test.assert_equals(productFib(4895), [55, 89, True])
 #    test.assert_equals(productFib(5895), [89, 144, False])
-    print(productFib(4895) == [55, 89, True])
-    print(productFib(5895) == [89, 144, False])
+    print(get_fib_prod_terms(FIB, FIB_PROD, 4895) == [55, 89, True])
+    print(get_fib_prod_terms(FIB, FIB_PROD, 5895) == [89, 144, False])
